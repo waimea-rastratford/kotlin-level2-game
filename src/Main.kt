@@ -14,13 +14,28 @@
 
 val board = mutableListOf<String>()
 var boardSize = 16
-val takenSpaces = mutableListOf<Int>()
+val player1Name = String
+val player2Name = String
 
 fun main() {
 
     createBoard()
     addCounters()
     showBoard()
+    getPlayerNames()
+
+
+    while (true) {
+
+    val action = getPlayer1Action()
+
+    when (action) {
+
+
+
+    }
+
+    }
 
 
 
@@ -30,48 +45,38 @@ fun main() {
 fun createBoard() {
 
     while (board.size < boardSize) {
-        board.add("-")
+        board.add(" ")
     }
 
 
 }
 
 fun addCounters() {
-    val blackCounter = "0"
-
-    for (i in 0..4) {
-
-        val random = 1..boardSize
-        val randomSpace = random.random()
-        board[randomSpace] = blackCounter
-        takenSpaces.add(randomSpace)
-
+    val whiteCounter = "□".white()
+    repeat(4) {
+        while (true) {
+            val random = (0..15).random()
+            if (board[random] == " ") {
+                board[random] = whiteCounter
+                break
+            }
+        }
     }
 
-    val random = 1..boardSize
-    if (random in takenSpaces) {
-        
+    val blackCounter = "■".red()
+    while (true) {
+        val random = (0..15).random()
+        if (board[random] == " ") {
+            board[random] = blackCounter
+            break
+        }
     }
 
 
-/*
-    val randomSpace = Int
-
-    while (randomSpace in takenSpaces) {
-        val random = 1..boardSize
-
     }
-*/
-
-    val whiteCounter = "X"
-
-
-
-
-}
 
 fun showBoard() {
-
+    println("  1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16 ")
     print("┌")
     print("───┬".repeat(board.size - 1))
     println("───┐")
@@ -92,6 +97,27 @@ fun showBoard() {
 }
 
 
+fun getPlayerNames() {
+
+    print("Enter Player 1 Name: ")
+    val player1Name = readln()
+
+    print("Enter Player 2 Name: ")
+    val player2Name = readln()
 
 
 
+}
+
+
+
+fun getPlayer1Action() {
+
+    print("Choose a counter: ")
+
+    val p1Choice = readln().toInt()
+
+    print("where do you want to move it")
+
+
+}
