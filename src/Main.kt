@@ -14,8 +14,8 @@
 
 val board = mutableListOf<String>()
 var boardSize = 16
-val player1Name = String
-val player2Name = String
+var player1Name = ""
+var player2Name = ""
 
 fun main() {
 
@@ -55,7 +55,7 @@ fun addCounters() {
     val whiteCounter = "□".white()
     repeat(4) {
         while (true) {
-            val random = (0..15).random()
+            val random = (1..15).random()
             if (board[random] == " ") {
                 board[random] = whiteCounter
                 break
@@ -65,7 +65,7 @@ fun addCounters() {
 
     val blackCounter = "■".red()
     while (true) {
-        val random = (0..15).random()
+        val random = (1..15).random()
         if (board[random] == " ") {
             board[random] = blackCounter
             break
@@ -100,11 +100,10 @@ fun showBoard() {
 fun getPlayerNames() {
 
     print("Enter Player 1 Name: ")
-    val player1Name = readln()
+    player1Name = readln()
 
     print("Enter Player 2 Name: ")
-    val player2Name = readln()
-
+    player2Name = readln()
 
 
 }
@@ -112,12 +111,24 @@ fun getPlayerNames() {
 
 
 fun getPlayer1Action() {
+    var p1Move = 0
 
-    print("Choose a counter: ")
+
+    print("$player1Name Choose a counter: ")
 
     val p1Choice = readln().toInt()
+    println()
 
-    print("where do you want to move it")
+
+    while (true) {
+        print("where do you want to move it ")
+         p1Move = readln().toInt() - 1
+        if(p1Move < p1Choice ) break
+
+    }
+
+
+
 
 
 }
