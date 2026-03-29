@@ -111,24 +111,32 @@ fun getPlayerNames() {
 
 
 fun getPlayer1Action() {
-    var p1Move = 0
+    var p1MoveToIndex = 0
 
 
     print("$player1Name Choose a counter: ")
 
-    val p1Choice = readln().toInt() - 1
+    val p1CounterIndex = readln().toInt() - 1
     println()
 
 
     while (true) {
         print("where do you want to move it ")
-         p1Move = readln().toInt() - 1
-        val moveRange = p1Choice..p1Move
-        if(p1Move < p1Choice && "□" in moveRange) break
+        p1MoveToIndex = readln().toInt() - 1
+        val moveRange = p1CounterIndex..p1MoveToIndex
+        if (p1MoveToIndex >= p1CounterIndex) {
+            print("Invalid move")
+            continue
+        }
+
+        var counterCount = 0
+        // loop fro move index up to counter index
+        // CHeck if any counters in way
+    }
 
 
     }
-    val choice1 = board[p1Choice]
+    val choice1 = board[p1CounterIndex]
     val choice2 = board[p1Move]
 
     board[p1Move] = choice1
