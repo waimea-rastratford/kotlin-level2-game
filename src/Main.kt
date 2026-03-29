@@ -2,8 +2,8 @@
  * =====================================================================
  * Programming Project for NCEA Level 2, Standard 91896
  * ---------------------------------------------------------------------
- * Project Name:   PROJECT NAME HERE
- * Project Author: PROJECT AUTHOR HERE
+ * Project Name:   Pinned
+ * Project Author: Ryan Stratford
  * GitHub Repo:    GITHUB REPO URL HERE
  * ---------------------------------------------------------------------
  * Notes:
@@ -116,19 +116,26 @@ fun getPlayer1Action() {
 
     print("$player1Name Choose a counter: ")
 
-    val p1Choice = readln().toInt()
+    val p1Choice = readln().toInt() - 1
     println()
 
 
     while (true) {
         print("where do you want to move it ")
          p1Move = readln().toInt() - 1
-        if(p1Move < p1Choice ) break
+        val moveRange = p1Choice..p1Move
+        if(p1Move < p1Choice && "□" in moveRange) break
+
 
     }
+    val choice1 = board[p1Choice]
+    val choice2 = board[p1Move]
+
+    board[p1Move] = choice1
+    board[p1Choice] = choice2
 
 
-
+showBoard()
 
 
 }
