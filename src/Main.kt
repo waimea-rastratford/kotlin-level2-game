@@ -16,6 +16,8 @@ val board = mutableListOf<String>()
 var boardSize = 16
 var player1Name = ""
 var player2Name = ""
+val whiteCounter = "■".white()
+val blackCounter = "■".red()
 
 fun main() {
 
@@ -29,11 +31,6 @@ fun main() {
 
     val action = getPlayer1Action()
 
-    when (action) {
-
-
-
-    }
 
     }
 
@@ -52,7 +49,6 @@ fun createBoard() {
 }
 
 fun addCounters() {
-    val whiteCounter = "□".white()
     repeat(4) {
         while (true) {
             val random = (1..15).random()
@@ -63,7 +59,6 @@ fun addCounters() {
         }
     }
 
-    val blackCounter = "■".red()
     while (true) {
         val random = (1..15).random()
         if (board[random] == " ") {
@@ -113,37 +108,111 @@ fun getPlayerNames() {
 fun getPlayer1Action() {
     var p1MoveToIndex = 0
 
-
+    while (true) {
     print("$player1Name Choose a counter: ")
 
     val p1CounterIndex = readln().toInt() - 1
-    println()
 
-
-    while (true) {
-        print("where do you want to move it ")
+        print("where do you want to move it:  ")
+        println()
+        println()
         p1MoveToIndex = readln().toInt() - 1
-        val moveRange = p1CounterIndex..p1MoveToIndex
         if (p1MoveToIndex >= p1CounterIndex) {
-            print("Invalid move")
+            println("Invalid move ".bold().red())
+            println()
             continue
+
         }
 
-        var counterCount = 0
-        // loop fro move index up to counter index
+        // loop from move index up to counter index
         // CHeck if any counters in way
+
+
+        var counterCount = 0
+        for (i in p1MoveToIndex..<p1CounterIndex) {
+            if (board[i] == whiteCounter || board[i] == blackCounter) {
+                counterCount++
+            }
+        }
+
+
+
+        if (counterCount > 0) {
+            println()
+            println("Invalid move".bold().red())
+            println()
+        }
+        else{
+            val choice1 = board[p1CounterIndex]
+            val choice2 = board[p1MoveToIndex]
+
+            board[p1MoveToIndex] = choice1
+            board[p1CounterIndex] = choice2
+
+
+        }
+
+        showBoard()
+    break
+
     }
 
+    getPlayer2Action()
+}
+
+
+
+fun getPlayer2Action() {
+    var p2MoveToIndex = 0
+
+    while (true) {
+        print("$player2Name Choose a counter: ")
+
+        val p2CounterIndex = readln().toInt() - 1
+
+        print("where do you want to move it:  ")
+        println()
+        println()
+        p2MoveToIndex = readln().toInt() - 1
+        if (p2MoveToIndex >= p2CounterIndex) {
+            println("Invalid move ".bold().red())
+            println()
+            continue
+
+        }
+
+        // loop from move index up to counter index
+        // CHeck if any counters in way
+
+        println()
+        var counterCount = 0
+        for (i in p2MoveToIndex..<p2CounterIndex) {
+            if (board[i] == whiteCounter || board[i] == blackCounter) {
+                counterCount++
+            }
+        }
+
+
+
+        if (counterCount > 0) {
+            println()
+            println("Invalid move".bold().red())
+            println()
+        }
+        else{
+            val choice1 = board[p2CounterIndex]
+            val choice2 = board[p2MoveToIndex]
+
+            board[p2MoveToIndex] = choice1
+            board[p2CounterIndex] = choice2
+
+
+        }
+
+        showBoard()
+        break
 
     }
-    val choice1 = board[p1CounterIndex]
-    val choice2 = board[p1Move]
 
-    board[p1Move] = choice1
-    board[p1Choice] = choice2
-
-
-showBoard()
-
-
+    getPlayer1Action()
 }
