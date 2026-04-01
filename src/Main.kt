@@ -13,6 +13,7 @@
 
 
 val board = mutableListOf<String>()
+val emptySlot = " "
 var boardSize = 16
 var player1Name = ""
 var player2Name = ""
@@ -29,7 +30,7 @@ fun main() {
 
     while (true) {
 
-    val action = getPlayer1Action()
+        getPlayer1Action()
 
 
     }
@@ -52,7 +53,7 @@ fun addCounters() {
     repeat(4) {
         while (true) {
             val random = (1..15).random()
-            if (board[random] == " ") {
+            if (board[random] == emptySlot) {
                 board[random] = whiteCounter
                 break
             }
@@ -107,6 +108,7 @@ fun getPlayerNames() {
 
 fun getPlayer1Action() {
     var p1MoveToIndex = 0
+    var p1WinCondition = 0
 
     while (true) {
     print("$player1Name Choose a counter: ")
@@ -142,28 +144,47 @@ fun getPlayer1Action() {
             println("Invalid move".bold().red())
             println()
         }
-        else{
-            val choice1 = board[p1CounterIndex]
-            val choice2 = board[p1MoveToIndex]
+        else {
+            if (p1MoveToIndex == 0) {
 
-            board[p1MoveToIndex] = choice1
-            board[p1CounterIndex] = choice2
+                if (board[p1CounterIndex] == blackCounter) {
+                    p1WinCondition++
+                }
+                else {
+
+                    board[p1CounterIndex] = emptySlot
+                }
+            } else {
+                val choice1 = board[p1CounterIndex]
+                val choice2 = board[p1MoveToIndex]
+
+                board[p1MoveToIndex] = choice1
+                board[p1CounterIndex] = choice2
 
 
+            }
         }
+
 
         showBoard()
     break
 
     }
 
-    getPlayer2Action()
+    if (p1WinCondition == 0) {
+        getPlayer2Action()
+    }
+
+    else{
+        p1endGame()
+    }
 }
 
 
 
 fun getPlayer2Action() {
     var p2MoveToIndex = 0
+    var p2WinCondition = 0
 
     while (true) {
         print("$player2Name Choose a counter: ")
@@ -193,26 +214,66 @@ fun getPlayer2Action() {
         }
 
 
-
         if (counterCount > 0) {
             println()
             println("Invalid move".bold().red())
             println()
         }
-        else{
-            val choice1 = board[p2CounterIndex]
-            val choice2 = board[p2MoveToIndex]
+        else {
+            if (p2MoveToIndex == 0) {
+                if (board[p2CounterIndex] == blackCounter) {
+                    p2WinCondition++
+                }
+                else {
 
-            board[p2MoveToIndex] = choice1
-            board[p2CounterIndex] = choice2
+                    board[p2CounterIndex] = emptySlot
+                }
+            } else {
+                val choice1 = board[p2CounterIndex]
+                val choice2 = board[p2MoveToIndex]
 
+                board[p2MoveToIndex] = choice1
+                board[p2CounterIndex] = choice2
+
+
+            }
 
         }
-
         showBoard()
         break
 
     }
+    if (p2WinCondition == 0) {
+        getPlayer1Action()
+    }
 
-    getPlayer1Action()
+    else{
+        p2endGame()
+    }
+}
+
+
+fun p1endGame() {
+
+    println("Congrats $player1Name you have won!!")
+
+    print("Do You want to play again? Y/N ")
+    val playAgain = readln()
+
+    if (playAgain == "Y") main()
+
+
+
+}
+
+
+fun p2endGame() {
+
+    println("Congrats $player2Name you have won!!")
+
+    print("Do You want to play again? Y/N ")
+    val playAgain = readln()
+
+    if (playAgain == "Y") main()
+
 }
