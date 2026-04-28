@@ -20,6 +20,7 @@ var player1Name = ""
 var player2Name = ""
 val whiteCounter = "■".white()
 val blackCounter = "■".red()
+var gameCounter = 0
 
 fun main() {
 
@@ -120,31 +121,47 @@ fun showBoard() {
 
 
 fun getPlayerNames() {
+    if (gameCounter == 0) {
+        while (true) {
+            print("Enter Player 1 Name: ".blue())
+            player1Name = readln().blue()
 
-    print("Enter Player 1 Name: ")
-    player1Name = readln()
+            if (player1Name.isNotBlank()) break
+        }
+        while (true) {
+            print("Enter Player 2 Name: ".red())
+            player2Name = readln().red()
 
-    print("Enter Player 2 Name: ")
-    player2Name = readln()
-
-
+            if (player2Name.isNotBlank()) break
+        }
+        println()
+    }
 }
 
 
-
 fun getPlayer1Action() {
-    var p1MoveToIndex = 0
+    var p1MoveToIndex: Int?
     var p1WinCondition = 0
-
+    var p1CounterIndex: Int?
     while (true) {
-    print("$player1Name Choose a counter: ")
 
-    val p1CounterIndex = readln().toInt() - 1
+        while (true) {
+            print("$player1Name Choose a counter: ".blue())
+            p1CounterIndex = readlnOrNull()?.toIntOrNull()
+            if (p1CounterIndex != null) break
+        }
+        p1CounterIndex = p1CounterIndex!! - 1
 
-        print("where do you want to move it:  ")
-        println()
-        println()
-        p1MoveToIndex = readln().toInt() - 1
+
+
+        while (true) {
+            print("where do you want to move it: ")
+            p1MoveToIndex = readlnOrNull()?.toIntOrNull()
+
+            if (p1MoveToIndex != null) break
+        }
+        p1MoveToIndex = p1MoveToIndex!! - 1
+
         if (p1MoveToIndex >= p1CounterIndex) {
             println("Invalid move ".bold().red())
             println()
@@ -163,7 +180,6 @@ fun getPlayer1Action() {
 
         if( board[p1MoveToIndex] == whiteCounter || board[p1MoveToIndex] == blackCounter)
             counterCount ++
-
 
         if (counterCount > 0) {
             println()
@@ -211,18 +227,27 @@ fun getPlayer1Action() {
 
 
 fun getPlayer2Action() {
-    var p2MoveToIndex = 0
+    var p2MoveToIndex: Int?
     var p2WinCondition = 0
+    var p2CounterIndex: Int?
 
     while (true) {
-        print("$player2Name Choose a counter: ")
 
-        val p2CounterIndex = readln().toInt() - 1
 
-        print("where do you want to move it:  ")
-        println()
-        println()
-        p2MoveToIndex = readln().toInt() - 1
+        while (true) {
+            print("$player2Name Choose a counter: ".red())
+             p2CounterIndex = readlnOrNull()?.toIntOrNull()
+            if (p2CounterIndex != null) break
+        }
+        p2CounterIndex = p2CounterIndex!! - 1
+
+        while (true) {
+            print("where do you want to move it:  ")
+            p2MoveToIndex = readlnOrNull()?.toIntOrNull()
+            if (p2MoveToIndex != null) break
+        }
+        p2MoveToIndex = p2MoveToIndex!! - 1
+
         if (p2MoveToIndex >= p2CounterIndex) {
             println("Invalid move ".bold().red())
             println()
@@ -289,8 +314,10 @@ fun p1endGame() {
     val playAgain = readln()
 
     if (playAgain == "Y"){
+        gameCounter ++
         clearBoard()
         main()
+
     }
 
 }
@@ -304,8 +331,10 @@ fun p2endGame() {
     val playAgain = readln()
 
     if (playAgain == "Y"){
+        gameCounter ++
         clearBoard()
         main()
+
     }
     }
 
