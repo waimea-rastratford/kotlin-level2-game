@@ -69,7 +69,7 @@ fun showInstructions() {
 fun createBoard() {
 
     while (board.size < boardSize) {
-        board.add(" ")
+        board.add(emptySlot)
     }
 
 
@@ -149,11 +149,9 @@ fun getPlayer1Action() {
             println("Invalid move ".bold().red())
             println()
             continue
-
         }
-
         // loop from move index up to counter index
-        // CHeck if any counters in way
+        // Check if any counters in way
 
 
         var counterCount = 0
@@ -233,7 +231,7 @@ fun getPlayer2Action() {
         }
 
         // loop from move index up to counter index
-        // CHeck if any counters in way
+        // Check if any counters in way
 
         println()
         var counterCount = 0
@@ -290,9 +288,10 @@ fun p1endGame() {
     print("Do You want to play again? Y/N ")
     val playAgain = readln()
 
-    if (playAgain == "Y") main()
-
-
+    if (playAgain == "Y"){
+        clearBoard()
+        main()
+    }
 
 }
 
@@ -304,6 +303,12 @@ fun p2endGame() {
     print("Do You want to play again? Y/N ")
     val playAgain = readln()
 
-    if (playAgain == "Y") main()
+    if (playAgain == "Y"){
+        clearBoard()
+        main()
+    }
+    }
 
-}
+    fun clearBoard() {
+        board.clear()
+    }
