@@ -29,7 +29,7 @@ fun main() {
     addCounters()
     showBoard()
     getPlayerNames()
-
+    // main game loop
 
     while (true) {
 
@@ -72,7 +72,7 @@ fun createBoard() {
     while (board.size < boardSize) {
         board.add(emptySlot)
     }
-
+    //loops through making a list to the size of the boardSize variable(16)
 
 }
 
@@ -86,6 +86,7 @@ fun addCounters() {
             }
         }
     }
+    // adds 4 counters in a random position in the list
 
     while (true) {
         val random = (1..15).random()
@@ -94,7 +95,7 @@ fun addCounters() {
             break
         }
     }
-
+    // adds 1 counter in a random position in the list
 
     }
 
@@ -115,6 +116,7 @@ fun showBoard() {
     println("───┘")
     println()
 
+    // Creates the boards layout
 
 
 }
@@ -151,7 +153,7 @@ fun getPlayer1Action() {
             if (p1CounterIndex != null) break
         }
         p1CounterIndex = p1CounterIndex!! - 1
-
+        // gets the first counter then minus 1 to fit in the board
 
 
         while (true) {
@@ -167,9 +169,7 @@ fun getPlayer1Action() {
             println()
             continue
         }
-        // loop from move index up to counter index
-        // Check if any counters in way
-
+        // gets the variable for where the counter is moving
 
         var counterCount = 0
         for (i in p1MoveToIndex..<p1CounterIndex) {
@@ -177,9 +177,13 @@ fun getPlayer1Action() {
                 counterCount++
             }
           }
+        // loop from move index up to counter index
+        // Check if any counters in way
+
 
         if( board[p1MoveToIndex] == whiteCounter || board[p1MoveToIndex] == blackCounter)
             counterCount ++
+        // Checks if where you are moving contains a counter
 
         if (counterCount > 0) {
             println()
@@ -188,6 +192,7 @@ fun getPlayer1Action() {
             showBoard()
             continue
         }
+        // Checks if there have been any errors
         else {
             if (p1MoveToIndex == 0) {
 
@@ -208,6 +213,9 @@ fun getPlayer1Action() {
 
             }
         }
+        // Checks if you picked the first slot
+        // Checks whether it was a black or white counter
+        // Then if it wasn't the first slot it moves the counter
 
 
         showBoard()
@@ -218,10 +226,12 @@ fun getPlayer1Action() {
     if (p1WinCondition == 0) {
         getPlayer2Action()
     }
+    // if the player hasn't won swap to the other players turn
 
     else{
         p1endGame()
     }
+    // if they have won starts the function for their win
 }
 
 
@@ -241,12 +251,15 @@ fun getPlayer2Action() {
         }
         p2CounterIndex = p2CounterIndex!! - 1
 
+        // gets the first counters number, then minus 1 to fit in the board
+
         while (true) {
             print("where do you want to move it:  ")
             p2MoveToIndex = readlnOrNull()?.toIntOrNull()
             if (p2MoveToIndex != null) break
         }
         p2MoveToIndex = p2MoveToIndex!! - 1
+        // gets the variable for where the counter is moving
 
         if (p2MoveToIndex >= p2CounterIndex) {
             println("Invalid move ".bold().red())
@@ -291,6 +304,11 @@ fun getPlayer2Action() {
 
             }
 
+            // Checks if you picked the first slot
+            // Checks whether it was a black or white counter
+            // Then if it wasn't the first slot it moves the counter
+
+
         }
         showBoard()
         break
@@ -299,10 +317,12 @@ fun getPlayer2Action() {
     if (p2WinCondition == 0) {
         getPlayer1Action()
     }
+    // if the player hasn't won swap to the other players turn
 
     else{
         p2endGame()
     }
+    // if they have won starts the function for their win
 }
 
 
