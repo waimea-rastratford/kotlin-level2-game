@@ -97,6 +97,7 @@ fun addCounters() {
     }
     // adds 1 counter in a random position in the list
 
+
     }
 
 fun showBoard() {
@@ -126,13 +127,14 @@ fun getPlayerNames() {
     if (gameCounter == 0) {
         while (true) {
             print("Enter Player 1 Name: ".blue())
-            player1Name = readln().blue()
+            player1Name = readln()
 
             if (player1Name.isNotBlank()) break
         }
+        println()
         while (true) {
             print("Enter Player 2 Name: ".red())
-            player2Name = readln().red()
+            player2Name = readln()
 
             if (player2Name.isNotBlank()) break
         }
@@ -145,7 +147,34 @@ fun getPlayer1Action() {
     var p1MoveToIndex: Int?
     var p1WinCondition = 0
     var p1CounterIndex: Int?
+    var p1Choice: String?
     while (true) {
+
+
+        if (board[0] == blackCounter || board[0] == whiteCounter) {
+            println()
+            println("$player1Name Your turn".blue())
+            println("[R]emove the 1st Counter")
+            println("[M]ove a Counter")
+            p1Choice = readlnOrNull()
+
+        } else {
+            p1Choice = " "
+        }
+
+        if (p1Choice == "R") {
+
+            if (board[0] == blackCounter) {
+                p1endGame()
+            }
+
+        board[0] = emptySlot
+        showBoard()
+        getPlayer2Action()
+    }
+
+        else {
+
 
         while (true) {
             print("$player1Name Choose a counter: ".blue())
@@ -176,13 +205,13 @@ fun getPlayer1Action() {
             if (board[i] == whiteCounter || board[i] == blackCounter) {
                 counterCount++
             }
-          }
+        }
         // loop from move index up to counter index
         // Check if any counters in way
 
 
-        if( board[p1MoveToIndex] == whiteCounter || board[p1MoveToIndex] == blackCounter)
-            counterCount ++
+        if (board[p1MoveToIndex] == whiteCounter || board[p1MoveToIndex] == blackCounter)
+            counterCount++
         // Checks if where you are moving contains a counter
 
         if (counterCount > 0) {
@@ -194,22 +223,111 @@ fun getPlayer1Action() {
         }
         // Checks if there have been any errors
         else {
-            if (p1MoveToIndex == 0) {
 
-                if (board[p1CounterIndex] == blackCounter) {
-                    p1WinCondition++
+            val choice1 = board[p1CounterIndex]
+            val choice2 = board[p1MoveToIndex]
+
+            board[p1MoveToIndex] = choice1
+            board[p1CounterIndex] = choice2
+
+        }
+    }
+    // Checks if you picked the first slot
+    // Checks whether it was a black or white counter
+    // Then if it wasn't the first slot it moves the counter
+
+        showBoard()
+    getPlayer2Action()
+}
+}
+
+
+fun getPlayer2Action() {
+    var p2MoveToIndex: Int?
+    var p2WinCondition = 0
+    var p2CounterIndex: Int?
+    var p2Choice: String?
+    while (true) {
+
+
+        if (board[0] == blackCounter || board[0] == whiteCounter) {
+            println()
+            println("$player2Name Your turn".red())
+            println("[R]emove the 1st Counter")
+            println("[M]ove a Counter")
+            p2Choice = readlnOrNull()
+
+        } else {
+            p2Choice = " "
+        }
+
+        if (p2Choice == "R") {
+
+            if (board[0] == blackCounter) {
+                p2endGame()
+            }
+
+            board[0] = emptySlot
+            showBoard()
+            getPlayer1Action()
+        }
+
+        else {
+
+
+            while (true) {
+                print("$player2Name Choose a counter: ".red())
+                p2CounterIndex = readlnOrNull()?.toIntOrNull()
+                if (p2CounterIndex != null) break
+            }
+            p2CounterIndex = p2CounterIndex!! - 1
+            // gets the first counter then minus 1 to fit in the board
+
+
+            while (true) {
+                print("where do you want to move it: ")
+                p2MoveToIndex = readlnOrNull()?.toIntOrNull()
+
+                if (p2MoveToIndex != null) break
+            }
+            p2MoveToIndex = p2MoveToIndex!! - 1
+
+            if (p2MoveToIndex >= p2CounterIndex) {
+                println("Invalid move ".bold().red())
+                println()
+                continue
+            }
+            // gets the variable for where the counter is moving
+
+            var counterCount = 0
+            for (i in p2MoveToIndex..<p2CounterIndex) {
+                if (board[i] == whiteCounter || board[i] == blackCounter) {
+                    counterCount++
                 }
-                else {
+            }
+            // loop from move index up to counter index
+            // Check if any counters in way
 
-                    board[p1CounterIndex] = emptySlot
-                }
-            } else {
-                val choice1 = board[p1CounterIndex]
-                val choice2 = board[p1MoveToIndex]
 
-                board[p1MoveToIndex] = choice1
-                board[p1CounterIndex] = choice2
+            if (board[p2MoveToIndex] == whiteCounter || board[p2MoveToIndex] == blackCounter)
+                counterCount++
+            // Checks if where you are moving contains a counter
 
+            if (counterCount > 0) {
+                println()
+                println("Invalid move".bold().red())
+                println()
+                showBoard()
+                continue
+            }
+            // Checks if there have been any errors
+            else {
+
+                val choice1 = board[p2CounterIndex]
+                val choice2 = board[p2MoveToIndex]
+
+                board[p2MoveToIndex] = choice1
+                board[p2CounterIndex] = choice2
 
             }
         }
@@ -217,112 +335,9 @@ fun getPlayer1Action() {
         // Checks whether it was a black or white counter
         // Then if it wasn't the first slot it moves the counter
 
-
         showBoard()
-    break
-
-    }
-
-    if (p1WinCondition == 0) {
-        getPlayer2Action()
-    }
-    // if the player hasn't won swap to the other players turn
-
-    else{
-        p1endGame()
-    }
-    // if they have won starts the function for their win
-}
-
-
-
-fun getPlayer2Action() {
-    var p2MoveToIndex: Int?
-    var p2WinCondition = 0
-    var p2CounterIndex: Int?
-
-    while (true) {
-
-
-        while (true) {
-            print("$player2Name Choose a counter: ".red())
-             p2CounterIndex = readlnOrNull()?.toIntOrNull()
-            if (p2CounterIndex != null) break
-        }
-        p2CounterIndex = p2CounterIndex!! - 1
-
-        // gets the first counters number, then minus 1 to fit in the board
-
-        while (true) {
-            print("where do you want to move it:  ")
-            p2MoveToIndex = readlnOrNull()?.toIntOrNull()
-            if (p2MoveToIndex != null) break
-        }
-        p2MoveToIndex = p2MoveToIndex!! - 1
-        // gets the variable for where the counter is moving
-
-        if (p2MoveToIndex >= p2CounterIndex) {
-            println("Invalid move ".bold().red())
-            println()
-            continue
-
-        }
-
-        // loop from move index up to counter index
-        // Check if any counters in way
-
-        println()
-        var counterCount = 0
-        for (i in p2MoveToIndex..<p2CounterIndex) {
-            if (board[i] == whiteCounter || board[i] == blackCounter) {
-                counterCount++
-            }
-        }
-
-
-        if (counterCount > 0) {
-            println()
-            println("Invalid move".bold().red())
-            println()
-        }
-        else {
-            if (p2MoveToIndex == 0) {
-                if (board[p2CounterIndex] == blackCounter) {
-                    p2WinCondition++
-                }
-                else {
-
-                    board[p2CounterIndex] = emptySlot
-                }
-            } else {
-                val choice1 = board[p2CounterIndex]
-                val choice2 = board[p2MoveToIndex]
-
-                board[p2MoveToIndex] = choice1
-                board[p2CounterIndex] = choice2
-
-
-            }
-
-            // Checks if you picked the first slot
-            // Checks whether it was a black or white counter
-            // Then if it wasn't the first slot it moves the counter
-
-
-        }
-        showBoard()
-        break
-
-    }
-    if (p2WinCondition == 0) {
         getPlayer1Action()
     }
-    // if the player hasn't won swap to the other players turn
-
-    else{
-        p2endGame()
-    }
-    // if they have won starts the function for their win
 }
 
 

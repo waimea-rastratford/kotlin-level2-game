@@ -4,23 +4,22 @@ The test results show the actual outcome of the testing, following the [Test Pla
 
 ---
 
-## Example Test Name
+## Test for player names - INVALID
+Testing if not entering a name works
 
-Example test description. Example test description.Example test description. Example test description.Example test description. Example test description.
 
 ### Test Data Used
 
-Details of test data. Details of test data. Details of test data. Details of test data. Details of test data. Details of test data. Details of test data.
-
+I will enter an Invalid/Blank value
 ### Test Result
 
-![example.png](screenshots/example.png)
+![CheckForBlankName.gif](screenshots/CheckForBlankName.gif)
 
-Comment on test result. Comment on test result. Comment on test result. Comment on test result. Comment on test result. Comment on test result.
+It worked as expected and did not let me enter a blank value
 
 ---
 
-## Example Test Name
+## 
 
 Example test description. Example test description.Example test description. Example test description.Example test description. Example test description.
 
