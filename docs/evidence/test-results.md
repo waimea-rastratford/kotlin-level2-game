@@ -41,8 +41,39 @@ I will test if the players can win
 I will remove the black counter from square 1
 ### Test Result
 
+![example.png](screenshots/GameWin.gif)
+
+The counter moved correctly as expected
+
+---
+
+
+## Remove the counter on the first space
+Player chooses to remove counter on space 1
+
+### Test Data Used
+Player's choice input
+
+### Test Result
+
+![example.png](screenshots/RemoveCounter.gif)
+
+The Counter was removed
+
+---
+
+## Game win
+
+
+### Test Data Used
+
+I will remove the black counter from square 1
+### Test Result
+
 ![example.png](screenshots/MovingCounters.gif)
 
 The counter moved correctly as expected
 
 ---
+
+# Check the checklist, and fix uppercases
