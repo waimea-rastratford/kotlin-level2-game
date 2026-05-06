@@ -65,14 +65,14 @@ fun showInstructions() {
             "### Variant\n".blue() +
             "- Counters can slide either left or right (but still can't jump other counters)\n".blue())
     println("------------------------------------------------------------------------------------------------------------------------------------------------------------------".blue())
-
+    // Instructions
 }
 fun createBoard() {
 
     while (board.size < boardSize) {
         board.add(emptySlot)
     }
-    //loops through making a list to the size of the boardSize variable(16)
+    //loops through making a list to the size of 16
 
 }
 
@@ -131,6 +131,7 @@ fun getPlayerNames() {
 
             if (player1Name.isNotBlank()) break
         }
+        // creates loop, for a valid name
         println()
         while (true) {
             print("Enter Player 2 Name: ".red())
@@ -138,8 +139,13 @@ fun getPlayerNames() {
 
             if (player2Name.isNotBlank()) break
         }
+        // repeats the loop
         println()
     }
+
+    println("Welcome to pinned".bold().green())
+    println()
+    showBoard()
 }
 
 
@@ -161,16 +167,19 @@ fun getPlayer1Action() {
         } else {
             p1Choice = " "
         }
+        // Checks if there is a counter on the first space
 
         if (p1Choice == "R") {
 
             if (board[0] == blackCounter) {
                 p1endGame()
             }
+            // If the player removes black counter, they win
 
         board[0] = emptySlot
         showBoard()
         getPlayer2Action()
+            // if it isn't the black counter, they remove the counter
     }
 
         else {
@@ -182,7 +191,7 @@ fun getPlayer1Action() {
             if (p1CounterIndex != null) break
         }
         p1CounterIndex = p1CounterIndex!! - 1
-        // gets the first counter then minus 1 to fit in the board
+        // gets the counter they want to move
 
 
         while (true) {
@@ -198,7 +207,7 @@ fun getPlayer1Action() {
             println()
             continue
         }
-        // gets the variable for where the counter is moving
+        // gets where the counter is moving
 
         var counterCount = 0
         for (i in p1MoveToIndex..<p1CounterIndex) {
@@ -260,6 +269,7 @@ fun getPlayer2Action() {
         } else {
             p2Choice = " "
         }
+        // Checks if there is a counter on the first space
 
         if (p2Choice == "R") {
 
@@ -271,6 +281,7 @@ fun getPlayer2Action() {
             showBoard()
             getPlayer1Action()
         }
+    // If the player removes black counter, they win
 
         else {
 
@@ -281,7 +292,7 @@ fun getPlayer2Action() {
                 if (p2CounterIndex != null) break
             }
             p2CounterIndex = p2CounterIndex!! - 1
-            // gets the first counter then minus 1 to fit in the board
+            // gets the counter they want to move
 
 
             while (true) {
@@ -297,7 +308,7 @@ fun getPlayer2Action() {
                 println()
                 continue
             }
-            // gets the variable for where the counter is moving
+            // gets where the counter is moving
 
             var counterCount = 0
             for (i in p2MoveToIndex..<p2CounterIndex) {
@@ -342,9 +353,9 @@ fun getPlayer2Action() {
 
 
 fun p1endGame() {
-
-    println("Congrats $player1Name you have won!!")
-
+    println()
+    println("Congrats $player1Name you have won!!".green())
+    println()
     print("Do You want to play again? Y/N ")
     val playAgain = readln()
 
@@ -354,7 +365,7 @@ fun p1endGame() {
         main()
 
     }
-
+    // Asks if they want to play again
 }
 
 
@@ -371,8 +382,11 @@ fun p2endGame() {
         main()
 
     }
-    }
+    // Asks if they want to play again
+
+}
 
     fun clearBoard() {
         board.clear()
+        // Clears the board for the replay
     }

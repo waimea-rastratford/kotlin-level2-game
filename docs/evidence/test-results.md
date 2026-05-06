@@ -19,19 +19,30 @@ It worked as expected and did not let me enter a blank value
 
 ---
 
-## 
+## Moving the counters
 
-Example test description. Example test description.Example test description. Example test description.Example test description. Example test description.
-
+testing moving the counters, eg. from 8 - 7
 ### Test Data Used
 
-Details of test data. Details of test data. Details of test data. Details of test data. Details of test data. Details of test data. Details of test data.
-
+I will input valid data that is expected for the code
 ### Test Result
 
-![example.png](screenshots/example.png)
+![example.png](screenshots/MovingCounters.gif)
 
-Comment on test result. Comment on test result. Comment on test result. Comment on test result. Comment on test result. Comment on test result.
+The counter moved correctly as expected without any issues
 
 ---
 
+## Game win
+
+I will test if the players can win
+### Test Data Used
+
+I will remove the black counter from square 1
+### Test Result
+
+![example.png](screenshots/MovingCounters.gif)
+
+The counter moved correctly as expected
+
+---
