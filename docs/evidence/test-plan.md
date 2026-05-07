@@ -76,6 +76,6 @@ At the end of their turn it will swap to the other player
 I will input an expected valid input
 ### Expected Test Result
 
-It will swap succesfully 
+It will swap successfully 
 
 ---

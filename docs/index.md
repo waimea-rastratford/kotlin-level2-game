@@ -1,6 +1,6 @@
-# PROJECT NAME HERE
+# Pinned
 
-by YOUR NAME HERE
+by Ryan Stratford
 
 ---
 

@@ -13,7 +13,7 @@ Testing if not entering a name works
 I will enter an Invalid/Blank value
 ### Test Result
 
-![CheckForBlankName.gif](screenshots/GameSetup.gif)
+![CheckForBlankName.gif](screenshots/CheckForBlankName.gif)
 
 It worked as expected and did not let me enter a blank value
 
@@ -89,3 +89,4 @@ I will input valid/expected data for moving counters on both players
 The code swapped between the players successfully
 
 ---
+

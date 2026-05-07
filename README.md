@@ -27,7 +27,23 @@ The project is written in the [Kotlin](https://kotlinlang.org) programming langu
 
 ## Project Description
 
-**PLACE YOUR PROJECT DESCRIPTION HERE**
+## Pinned 📌
 
+### Game Setup
+- A row of 16 squares, numbered 1 to 16 from left to right
+- 5 counters (total) are placed randomly on the board - 4 white and 1 black
+- Decide who goes first
+
+### Gameplay
+- Players take turns - You may not skip your turn
+- On your turn you must do exactly one of the following:
+    - Slide any counter (black or white) any number of squares to the left, as long as no other counter is in the way and the destination square is empty, or...
+    - Remove the counter on square 1 (only if a counter is there)
+
+### Win Condition
+- The player who removes the black counter from square 1 wins
+
+### Variant
+- Counters can slide either left or right (but still can't jump other counters)
 
 
