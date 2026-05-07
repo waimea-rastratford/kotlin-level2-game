@@ -169,7 +169,7 @@ fun getPlayer1Action() {
         }
         // Checks if there is a counter on the first space
 
-        if (p1Choice == "R") {
+        if (p1Choice == "R" || p1Choice == "r") {
 
             if (board[0] == blackCounter) {
                 p1endGame()
@@ -275,7 +275,7 @@ fun getPlayer2Action() {
         }
         // Checks if there is a counter on the first space
 
-        if (p2Choice == "R") {
+        if (p2Choice == "R" || p2Choice == "r") {
 
             if (board[0] == blackCounter) {
                 p2endGame()
@@ -346,6 +346,7 @@ fun getPlayer2Action() {
 
             }
         }
+        
         // Checks if you picked the first slot
         // Checks whether it was a black or white counter
         // Then if it wasn't the first slot it moves the counter

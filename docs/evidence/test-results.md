@@ -77,21 +77,7 @@ The counters are placed correctly
 ---
 
 ## Swapping between players
-The 
-
-### Test Data Used
-I will input valid/expected data for moving counters on both players
-
-### Test Result
-
-![example.png](screenshots/PlayerSwap.gif)
-
-The code swapped between the players successfully
-
----
-
-## Swapping between players
-The
+The player will swap when the other play is done
 
 ### Test Data Used
 I will input valid/expected data for moving counters on both players
