@@ -13,7 +13,7 @@ Testing if not entering a name works
 I will enter an Invalid/Blank value
 ### Test Result
 
-![CheckForBlankName.gif](screenshots/CheckForBlankName.gif)
+![CheckForBlankName.gif](screenshots/GameSetup.gif)
 
 It worked as expected and did not let me enter a blank value
 
@@ -62,18 +62,44 @@ The Counter was removed
 
 ---
 
-## Game win
-
+## Game Setup
+The game will setup
 
 ### Test Data Used
 
-I will remove the black counter from square 1
+I will run the code
 ### Test Result
 
-![example.png](screenshots/MovingCounters.gif)
+![example.png](screenshots/GameSetup.gif)
 
-The counter moved correctly as expected
+The counters are placed correctly
 
 ---
 
-# Check the checklist, and fix uppercases
+## Swapping between players
+The 
+
+### Test Data Used
+I will input valid/expected data for moving counters on both players
+
+### Test Result
+
+![example.png](screenshots/PlayerSwap.gif)
+
+The code swapped between the players successfully
+
+---
+
+## Swapping between players
+The
+
+### Test Data Used
+I will input valid/expected data for moving counters on both players
+
+### Test Result
+
+![example.png](screenshots/PlayerSwap.gif)
+
+The code swapped between the players successfully
+
+---

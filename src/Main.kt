@@ -218,10 +218,14 @@ fun getPlayer1Action() {
         // loop from move index up to counter index
         // Check if any counters in way
 
+            if (board[p1CounterIndex] == emptySlot )
+                counterCount++
 
-        if (board[p1MoveToIndex] == whiteCounter || board[p1MoveToIndex] == blackCounter)
+            if (board[p1MoveToIndex] == whiteCounter || board[p1MoveToIndex] == blackCounter)
             counterCount++
         // Checks if where you are moving contains a counter
+
+
 
         if (counterCount > 0) {
             println()
